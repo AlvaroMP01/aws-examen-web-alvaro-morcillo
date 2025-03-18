@@ -32,9 +32,9 @@ Manual de configuración de una instancia, de redes y subredesen AWS
 
 ### Paso 2: Crear Subredes
 
-![img5](./images/img5.png)
+En el panel izquierdo, ve a **Subnets > Create subnet**
 
-En el panel izquierdo, ve a Subnets > Create subnet.
+![img5](./images/img5.png)
 
 - **Subred para Linux (Subnet Linux):**
   - **VPC ID:** `Selecciona la VPC creada (mi-vpc-alvaro-morcillo).`
@@ -86,7 +86,95 @@ Eligimos nuestra VPC `mi-vpc-alvaro-morcillo` y seleccionamos **Conectar**.
 - Seleccionar `Agregar ruta`
 - Destination: 0.0.0.0/0.
 - Target: Selecciona el Internet Gateway creado `Gateway-examen`.
-- Haz clic en Save changes.
+- Haz clic en **Guardar Cambios**.
 
 ![img14](./images/img14.png)
 
+## 2. Creación de Instancias EC2
+
+Ve a **Servicios > EC2 > Lanzar la Instancia**
+
+![img15](./images/img15.png)
+
+### Instancia Windows Server 2022
+- **Nombre:** `windows-server`
+- **AMI:** Windows Server 2022
+- **Tipo:** `t3.medium`
+- **Subnet:** `subnet-windows`
+- **Nombre del Security Group:** `SG-Windows`
+- **Security Group Entrante:** `RDP (3389)`, `HTTP (80)`, `Vite (5173)`.
+
+![img16](./images/img16.png)
+
+- **Asignar automaticamente la IP Publica:** `Habilitar`.
+
+![img17](./images/img17.png)
+
+- **Para añadir el protocolo para el puerto de Vite añadimos un **Custom TCP** y escribimos el puerto manualmente `5173`.**
+
+![img18](./images/img18.2.png)
+
+### Instancia Ubuntu 22.04
+- **Nombre:** `ubuntu-server`
+- **AMI:** Ubuntu 22.04 LTS
+- **Tipo:** `t2.micro`
+- **Subnet:** `subnet-linux`
+- **Security Group:** `SG-Ubuntu` 
+- **Security Group Entrante:**`SSH (22)`, `HTTP (80)`. `Vite (5173)`.
+
+![img18.3](./images/img18.3.png)
+
+- **Asignar automaticamente la IP Publica:** `Habilitar`.
+
+![img18.4](./images/img18.4.png)
+
+- **Para añadir el protocolo para el puerto de Vite añadimos un **Custom TCP** y escribimos el puerto manualmente `5173`.**
+
+![img18.5](./images/img18.5.png)
+
+## 3. Instalación de Software y Despliegue Web
+
+### configuración en Linux
+
+```bash
+# Instalar Node.js y npm
+sudo apt update && sudo apt install nodejs npm -y
+# Instalar Vite y Serve
+sudo npm install -g vite serve
+```
+
+![img20.1](./images/img20.1.png)
+
+```bash
+# Crear proyecto y desplegar
+mkdir web-tunombre-apellidos && cd web-tunombre-apellidos
+npm init vite@latest . -- --template vanilla
+npm install
+npm run build
+serve -s dist -l 5173
+```
+![img20.2](./images/img20.2.png)
+
+## 4. Conexión a la instancias
+
+### En Linux
+
+- En la terminal
+
+```bash
+chmod 400 clave.pem
+ssh -i instancia-ubuntu.pem ubuntu@44.222.215.229
+```
+Para comprobar que exista una conexión de la instancia con internet podemos ejecutar
+```bash 
+ping google.com
+```
+
+![img21](./images/img21.png)
+
+
+### Comprobar la conexión en el navegador
+
+http://localhost:5173
+
+![img23](./images/img23.png)
