@@ -147,8 +147,8 @@ sudo npm install -g vite serve
 
 ```bash
 # Crear proyecto y desplegar
-mkdir web-tunombre-apellidos && cd web-tunombre-apellidos
-npm init vite@latest . -- --template vanilla
+mkdir web-alvaro-morcillo && cd web-alvaro-morcillo
+npm init vite@latest .
 npm install
 npm run build
 serve -s dist -l 5173
