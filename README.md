@@ -178,3 +178,60 @@ ping google.com
 http://localhost:5173
 
 ![img23](./images/img23.png)
+
+# Colaboración mediante Pull Request (PR) en GitHub
+
+## Pasos para realizar un Pull Request
+
+### **1. Preparación del repositorio del compañero**
+
+**El compañero debe:**
+1. Tener un repositorio en GitHub: `nombre-de-su-repositorio`.
+2. Añadir colaborador:
+   - Ir a **Settings > Collaborators** y añadir tu usuario de GitHub `AlvaroMP01`.
+
+### **2. Crear un Fork del repositorio**
+1. Acceder al repositorio del compañero en GitHub.
+2. Clic en **Fork** (esquina arriba a la derecha).  
+
+![img24.0](./images/img24.0.png)
+
+### **3. Clonar tu Fork localmente**
+
+```bash
+git clone https://github.com/tu-usuario/repositorio-compañero-forkeado.git
+cd repositorio-compañero-forkeado
+```
+
+### **4. Realizar cambios y revisiones**
+
+- Lo cambios realizados en el repositorio del compañero fueron:
+  - Creación de un proyecto con Node y Vite
+
+![img24.2](./images/img24.2.png)
+
+![img24.1](./images/img24.1.png)
+
+### **5. Hacer commit y subir los cambios**
+
+![img24.3](./images/img24.3.png)
+
+### **6. Crear el Pull Request**
+
+1. En el repositorio forkeado, hacer clic donde dice `Compare & Pull Request`
+
+![img24](./images/img24.png)
+
+2. Se nos abrirá el Pull Request, donde podremos poner un título y descripción de los cmabios que hayamos realizado anteriormente.
+
+     - Una vez hayamos puesto el título y descripción de lo que hemos hecho, daremos clic en `Create Pull Request` (en la esquina abajo a la derecha).
+
+![img25](./images/img25.png)
+
+3. Hecho esto habremos completado el Pull Request
+
+![img26](./images/img26.png)
+
+- Siempre que los cambios realizados en el repositorio sean revisados por el compañero y esté de acuerdo con ello, podremos hacer un `Merge` a la rama principal de este.
+
+![img27](./images/img27.png)

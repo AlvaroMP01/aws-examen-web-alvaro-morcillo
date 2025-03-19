@@ -1,1 +1,0 @@
-Muy buen trabajo. Precioso
